@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            background-color: rgb(158, 160, 160);
+        }
+
+        h1 {
+            position: absolute;
+            font-size: 70px;
+            margin: auto;
+            text-align: center;
+            width: 100vw;
+            top: 3vh;
+        }
+
+        #books {
+            background-color:rgb(75, 75, 75);
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding: 20px;
+            margin: auto;
+            top: 14vh;
+            border-color: black;
+            border-style: solid;
+            width: 90vw;
+            height: 70vh;
+        }
+
+        #buttoncontainer {
+            position: relative;
+            width: 100vw;
+            margin: auto;
+            top: 16vh;
+            height: 10vh;
+            text-align: center;
+        }
+
+        #add {
+            margin: auto;
+            width: 9vw;
+            height: 5vh;
+            font-size: 120%;
+            font-weight: bold;
+        }
+
+        .boxes {
+            background-color: black;
+            color: lightgrey;
+            border-color: black;
+            border-style: solid;
+            height: 20vh;
+            width: 15vw;
+            margin: 16px;
+            padding: 2px 25px 2px 25px;
+            font-size: 100%;
+            font-weight: bold;
+        }
+
+        #newbook {
+            visibility: hidden;
+            position: absolute;
+            top: 30vh;
+            left: 43vw;
+            background-color: grey;
+            width: 16vw;
+            font-size: 120%;
+            font-weight: bold;
+        }
+
+        form {
+            display: flex;
+            flex-direction: row;
+            align-content: center;
+            flex-wrap: wrap;
+            align-items: baseline;
+        }
+
+        .col-25 {
+            padding-left: 50px;
+            padding-top: 10px;
+            width: 80%;
+            align-self: flex-start;
+            height: 20%;
+        }
+
+        .col-75 {
+            padding: 10px;
+            padding-left: 40px;
+            width: 80%;
+            align-self: flex-end;
+            height: 20%;
+        }
+
+        #input1 {
+            position: relative;
+            left: 20px;
+            padding: 10px;
+            height: 7%;
+            margin: 10px;
+        }
+
+        #input2 {
+            position: relative;
+            left: 75px;
+            padding: 10px;
+            height: 7%;
+            margin: 10px;
+        }
+
+        .read {
+            background-color: green;
+            position: relative;
+            right: -90px;
+            bottom: -20px;
+
+        }
+
+        .notread {
+            background-color: red;
+            position: relative;
+            right: -70px;
+            bottom: -20px;
+        }
+
+        .delete {
+            position: relative;
+            bottom: -20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>My Library!</h1>
+    <div id="buttoncontainer">
+    <button id="add" onclick="document.getElementById('newbook').style.visibility='visible'">New Book</button>
+    </div>
+
+    <div id="books">
+        
+    </div>
+
+    <div id="newbook">
+        <form id="bookcreate">
+                <div class="col-25">
+                    <label for="fname">Title:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="title" name="title" placeholder="Title of Book" required>
+                </div>
+                <div class="col-25">
+                    <label for="lname">Author:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="author" name="author" placeholder="Author of Book" required>
+                </div>
+                <div class="col-25">
+                    <label for="country">Pages:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="numberofpages" name="numberofpages" placeholder="Pages in Book" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
+                </div>
+                <div class="col-25">
+                    <label for="subject">Read?</label>
+                </div>
+                <div class="col-75">
+                    <input type="checkbox" id="haveYouRead" name="read" placeholder="Have you read this book?"></input>
+                </div>
+                <div class="col-25">
+
+                </div>
+                <div>
+                <button id="input1" value="Cancel">Cancel</button>
+                <input type="submit" id="input2" value="Submit"></button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="script.js">
+    </script>
+</body>
