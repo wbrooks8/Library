@@ -2,13 +2,13 @@
 let myLibrary = [];
 
 // Book Constructor 
-function Book(title, author, numberofpages, read) {
+function Book(title, author, numberOfPages, read) {
     this.title = "Title: " + title
     this.author = "Author: " + author
-    this.numberofpages = "Pages: " + numberofpages
+    this.numberOfPages = "Pages: " + numberOfPages
     this.read = read
     this.info = function() {
-        console.log(title, author, numberofpages, read)
+        console.log(title, author, numberOfPages, read)
     }
     
 
@@ -21,51 +21,50 @@ function addBookToLibrary (title) {
 
 
 //Add books from form to library 
-function book2 () {
-    let q = document.getElementById('title').value
-    let w = document.getElementById('author').value
-    let e = document.getElementById('numberofpages').value
-    let r
+function bookToLibrary () {
+    let titleValue = document.getElementById('title').value
+    let authorValue = document.getElementById('author').value
+    let pagesValue = document.getElementById('numberOfPages').value
+    let readOrNot
     if (document.getElementById('haveYouRead').checked === true) {
-        r = "read"
+        readOrNot = "read"
     }
     else {
-        r = "notread"
+        readOrNot = "notRead"
     }
-    const t = new Book(q, w, e, r)
-    addBookToLibrary(t)
+    const myTitle = new Book(titleValue, authorValue, pagesValue, readOrNot)
+    addBookToLibrary(myTitle)
     document.getElementById('books').innerHTML=''
     displayTable(myLibrary)
-    console.log(r)
 }
 
 //Pre-made book objects
 const LOTR = new Book("LOTR", "JRR Tolkin", "9999", "read");
-const harrypotter = new Book ("Harry", "Author", "756", "not read");
+const harryPotter = new Book ("Harry", "Author", "756", "not read");
 
 addBookToLibrary(LOTR);
-addBookToLibrary(harrypotter);
+addBookToLibrary(harryPotter);
 
 //Adds objects to the HTML
 function displayTable(books)
 {
-    var table = document.getElementById('books');
+    let table = document.getElementById('books');
 
     for (var i = 0; i < books.length; ++i)
     {
-        var book = books[i];
+        let book = books[i];
 
         let z = i;
 
-        var box = document.createElement('div');
+        let box = document.createElement('div');
 
         box.classList.add("boxes")
 
         box.setAttribute("id", i);
 
-        var properties = ['title', 'author', 'numberofpages', 'read'];
+        let properties = ['title', 'author', 'numberOfPages', 'read'];
 
-        let readbook = function () {
+        let readBook = function () {
             if (book.read == "read") {
                 let cell1 = document.createElement('button')
                 cell1.classList.add("read")
@@ -73,7 +72,7 @@ function displayTable(books)
                 cell1.type="button"
                 cell1.onclick = function () {
                     let myid = document.getElementById(z);
-                    myLibrary[myid.id].read = "notread"
+                    myLibrary[myid.id].read = "notRead"
                     document.getElementById('books').innerHTML=''
                     displayTable(myLibrary);
                 }
@@ -82,7 +81,7 @@ function displayTable(books)
 
             else {
                 let cell2 = document.createElement('button')
-                cell2.classList.add("notread")
+                cell2.classList.add("notRead")
                 cell2.innerHTML = "Not Read"
                 cell2.type="button"
                 cell2.onclick = function () {
@@ -98,29 +97,29 @@ function displayTable(books)
 
         for (var j = 0; j < 3; ++j)
         {  
-            var cell = document.createElement('p');
+            let cell = document.createElement('p');
 
             cell.innerHTML = book[properties[j]];
 
             box.appendChild(cell);
         }
 
-        let cell3 = document.createElement('button')
+        let deleteButton = document.createElement('button')
 
-        cell3.innerHTML = "Delete"
+        deleteButton.innerHTML = "Delete"
 
-        cell3.classList.add('delete')
+        deleteButton.classList.add('delete')
 
-        cell3.onclick = function() {
+        deleteButton.onclick = function() {
             let myid = document.getElementById(z);
             myLibrary.splice(myid.id, 1);
             document.getElementById('books').innerHTML=''
             displayTable(myLibrary);
         };
 
-        box.appendChild(cell3)
+        box.appendChild(deleteButton)
 
-        readbook();
+        readBook();
 
         table.appendChild(box)
     }
@@ -130,11 +129,11 @@ function displayTable(books)
 document.getElementById('input2').addEventListener("click", function(ev) {
     ev.preventDefault();
 
-    book2();
+    bookToLibrary();
 
-    document.getElementById('newbook').style.visibility='hidden';
+    document.getElementById('newBook').style.visibility='hidden';
 
-    document.getElementById('bookcreate').reset();
+    document.getElementById('bookCreate').reset();
 
 })
 
@@ -142,9 +141,9 @@ document.getElementById('input2').addEventListener("click", function(ev) {
 document.getElementById("input1").addEventListener("click", function(ev) {
     ev.preventDefault();
 
-    document.getElementById('bookcreate').reset();
+    document.getElementById('bookCreate').reset();
 
-    document.getElementById('newbook').style.visibility='hidden';
+    document.getElementById('newBook').style.visibility='hidden';
 })
 
 document.getElementById('')
